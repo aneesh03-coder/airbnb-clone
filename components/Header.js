@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import {SearchIcon,GlobeAltIcon,MenuIcon,UserCircleIcon,UsersIcon} from '@heroicons/react/solid'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { DateRangePicker } from 'react-date-range';
+import { DateRangePicker,DateRange } from 'react-date-range';
+import {BrowserView, MobileView, TabletView} from 'react-device-detect';
 
 const Header = () => {
     const [searchInput,setSearchInput]=useState('');
     const [startDate,setStartDate]=useState(new Date())
     const [endDate,setEndDate]=useState(new Date())
     const [noOfGuests,setNoOfGuests]=useState(1);
+    const [width, setWidth] = useState('');
+    
+        function handleWindowSizeChange() {
+                setWidth(window.innerWidth);
+            }
+        useEffect(() => {
+                setWidth(window.innerWidth);
+                window.addEventListener('resize', handleWindowSizeChange);
+                return () => {
+                    window.removeEventListener('resize', handleWindowSizeChange);
+                }
+            }, []);
 
     // const maxDate = new Date();
     // maxDate.setDate(maxDate.getDate() + 7);
@@ -33,7 +46,7 @@ const Header = () => {
     }
 
     return (
-        <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10'>
+        <header className='sticky  top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10'>
             {/* Left Section */}
             <div className='relative flex items-center h-9 md:h-10 cursor-pointer my-auto'>
                 <Image 
@@ -63,6 +76,16 @@ const Header = () => {
 
             {searchInput && (
                 <div className='flex flex-col col-span-3 mx-auto mt-1'>
+                {/* <BrowserView> */}
+                {width <=768 ?( <DateRange
+                    ranges={[selectionRange]}
+                        minDate={new Date()}
+                        // maxDate={maxDate}
+                        // disabledDates={disabledDates}
+                        rangeColors={["#FD5B61"]}
+                        onChange={handleSelect}
+                        editableDateInputs={true}
+                    />):(
                     <DateRangePicker
                         ranges={[selectionRange]}
                         minDate={new Date()}
@@ -70,7 +93,16 @@ const Header = () => {
                         // disabledDates={disabledDates}
                         rangeColors={["#FD5B61"]}
                         onChange={handleSelect}
-                    />
+                        editableDateInputs={true}
+                      
+                    />   
+                )}
+                                     
+                {/* </BrowserView> */}
+
+                {/* <MobileView> */}
+               
+                {/* </MobileView> */}
                     <div className='flex items-center border-b mb-2 pb-1'>
                         <h2 className='text-2xl flex-grow font-semibold'>Number of Guests</h2>
                         <UsersIcon className='h-5'/>

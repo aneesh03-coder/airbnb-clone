@@ -8,7 +8,7 @@ import SmallCard from '../components/SmallCard';
 
 export default function Home({exploreData,cardsData}) {
   return (
-    <div className="">
+    <div >
       <Head>
         <title>AirBnB Clone</title>
         <link rel="icon" href="https://venturebeat.com/wp-content/uploads/2014/07/airbnb-logo-red.jpg?fit=800%2C450&strip=all" />
