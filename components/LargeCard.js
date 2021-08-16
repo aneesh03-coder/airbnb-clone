@@ -12,7 +12,7 @@ const LargeCard = ({img,title,description,buttonText}) => {
                     className='rounded-2xl'
                 />
             </div>
-            <div className='absolute top-32 left-12'>
+            <div className='absolute top-16 left-12'>
                 <h3 className='text-4xl mb-3 w-64'>{title}</h3>
                 <p>{description}</p>
 
