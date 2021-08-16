@@ -17,7 +17,7 @@ const Header = ({placeholder}) => {
     
         function handleWindowSizeChange() {
                 setWidth(window.innerWidth);
-                console.log(width)
+        
             }
         useEffect(() => {
                 setWidth(window.innerWidth);

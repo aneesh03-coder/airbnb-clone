@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import {format} from 'date-fns'
 import InfoCard from '../components/InfoCard'
+import Map from '../components/Map'
 
 const Search = ({searchResults}) => {
     const router=useRouter();
@@ -35,6 +36,11 @@ const Search = ({searchResults}) => {
                     ))}
                     </div>
                 </section>
+                    
+                 <section className='hidden xl:inline-flex xl:min-w-[600px] mt-52 px-6 '>
+                     <Map searchResults={searchResults} className='rounded-3xl'/>
+                 </section>   
+
             </main>
             <div className='bg-gray-100 w-full'>
            <Footer/>
